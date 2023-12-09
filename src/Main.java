@@ -3,10 +3,11 @@ import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-//        DirectoryLister directoryLister = new DirectoryLister();
+//        IDirectoryLister directoryLister = new DirectoryLister();
 //        directoryLister.printDirectory();
 
-        FileHandler fileHandler = new FileHandler();
-        fileHandler.writeUserInputToFile();
+        IFileHandler fileHandler = new FileHandler();
+//        fileHandler.writeUserInputToFile();
+        fileHandler.readFromFile("haha1.txt");
     }
 }

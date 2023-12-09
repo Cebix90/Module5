@@ -1,6 +1,8 @@
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.List;
 import java.util.Scanner;
 
 interface IFileHandler {
@@ -54,7 +56,6 @@ public class FileHandler implements IFileHandler {
             }
         } catch (IOException exception) {
             System.out.println("An unexpected error is occurred.");
-            exception.printStackTrace();
         }
 
         return false;
@@ -62,7 +63,13 @@ public class FileHandler implements IFileHandler {
 
     @Override
     public void readFromFile(String fileName) {
+        Path filePath = Paths.get("C:\\temp\\", fileName);
 
+        try {
+            List<String> fileLines = Files.readAllLines(filePath);
+            fileLines.forEach(System.out::println);
+        } catch (IOException e) {
+            System.out.println("An error occurred while reading the file.");
+        }
     }
-
 }
