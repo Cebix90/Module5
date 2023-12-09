@@ -7,15 +7,16 @@ import java.util.Scanner;
 
 interface IFileHandler {
     boolean writeUserInputToFile();
+
     void readFromFile(String fileName);
 }
 
 public class FileHandler implements IFileHandler {
+    private static final String DIRECTORY_PATH = "C:\\temp\\";
+
     @Override
     public boolean writeUserInputToFile() {
-        Scanner scanner = new Scanner(System.in);
-
-        try {
+        try (Scanner scanner = new Scanner(System.in)) {
             System.out.println("Enter file's name:");
             String fileName = scanner.nextLine();
 
@@ -24,36 +25,34 @@ public class FileHandler implements IFileHandler {
                 return false;
             }
 
-            String path = "C:\\temp\\" + fileName + ".txt";
+//            String filePath = DIRECTORY_PATH + fileName + ".txt";
+            Path path = Paths.get(DIRECTORY_PATH + fileName + ".txt");
 
-            File newFile = new File(path);
-            if (newFile.createNewFile()) {
-                System.out.println("File " + newFile.getName() + " is created successfully.");
-
-                System.out.println("Enter text:");
-                String inputLine = scanner.nextLine().trim();
-
-                String[] words = inputLine.split("\\s+");
-
-                StringBuilder contentBuilder = new StringBuilder();
-                for (int i = 0; i < words.length; i++) {
-                    contentBuilder.append(words[i]).append(" ");
-                    if ((i + 1) % 4 == 0) {
-                        contentBuilder.append("\n");
-                    }
-                }
-
-                String content = contentBuilder.toString().trim();
-
-                try (FileWriter fileWriter = new FileWriter(path)) {
-                    fileWriter.write(content);
-                }
-
-                System.out.println("Content is successfully wrote to the file.");
-                return true;
-            } else {
-                System.out.println("File is already exist in the directory.");
+            if (Files.exists(path)) {
+                System.out.println("File already exists in the directory.");
+                return false;
             }
+
+            System.out.println("Enter text:");
+            String inputLine = scanner.nextLine().trim();
+
+            String[] words = inputLine.split("\\s+");
+
+            StringBuilder contentBuilder = new StringBuilder();
+            for (int i = 0; i < words.length; i++) {
+                contentBuilder.append(words[i]).append(" ");
+                if ((i + 1) % 4 == 0) {
+                    contentBuilder.append("\n");
+                }
+            }
+
+            String content = contentBuilder.toString().trim();
+
+            Files.writeString(path, content);
+
+            System.out.println("Content is successfully wrote to the file.");
+            return true;
+
         } catch (IOException exception) {
             System.out.println("An unexpected error is occurred.");
         }
