@@ -14,6 +14,13 @@ interface IFileHandler {
 public class FileHandler implements IFileHandler {
     private static final String DIRECTORY_PATH = "C:\\temp\\";
 
+    public FileHandler() {
+        try {
+            Files.createDirectories(Paths.get(DIRECTORY_PATH));
+        } catch (IOException e) {
+            System.out.println("An error occurred while creating the directory.");
+        }
+    }
     @Override
     public boolean writeUserInputToFile() {
         try (Scanner scanner = new Scanner(System.in)) {
