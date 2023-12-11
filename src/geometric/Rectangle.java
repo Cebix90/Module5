@@ -13,6 +13,14 @@ public class Rectangle implements GeometricFigure {
         this.width = width;
     }
 
+    public double getLength() {
+        return length;
+    }
+
+    public double getWidth() {
+        return width;
+    }
+
     @Override
     public double calculateArea() {
         return length * width;
