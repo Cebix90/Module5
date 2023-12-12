@@ -1,5 +1,8 @@
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
@@ -8,10 +11,8 @@ import java.util.Collections;
 import java.util.List;
 
 public class FileInverter {
-    public boolean invertFile(String fileName) {
-        String separator = File.separator;
-
-        try (InputStream inputStream = getClass().getClassLoader().getResourceAsStream("resources" + separator + fileName)) {
+    public boolean invertFile(String fileName) throws IOException {
+        try (InputStream inputStream = getClass().getClassLoader().getResourceAsStream("resources/" + fileName)) {
             if (inputStream != null) {
                 byte[] contentBytes = inputStream.readAllBytes();
                 String content = new String(contentBytes);
@@ -31,17 +32,28 @@ public class FileInverter {
 
                 String invertedContent = String.join(" ", words);
 
-                Path outputPath = Path.of("src" + separator + "resources" + separator + fileName.substring(0, fileName.length() - 4) + "-reversed.txt");
-                Files.write(outputPath, invertedContent.getBytes(), StandardOpenOption.CREATE);
+                Path outputPath = Path.of("src/resources/" + getFileNameWithReversedString(fileName));
 
+                try {
+                    Files.write(outputPath, invertedContent.getBytes(), StandardOpenOption.CREATE_NEW);
+                } catch (FileAlreadyExistsException e) {
+                    System.out.println("File already exists: " + getFileNameWithReversedString(fileName));
+                    return false;
+                } catch (IOException e) {
+                    System.out.println("An error occurred while writing to the file: " + e.getMessage());
+                    return false;
+                }
+
+                System.out.println("File created successfully: " + getFileNameWithReversedString(fileName));
                 return true;
             } else {
                 System.out.println("Resource not found: " + fileName);
                 return false;
             }
-        } catch (Exception e) {
-            System.out.println("An error occurred: " + e.getMessage());
-            return false;
         }
+    }
+
+    private String getFileNameWithReversedString(String fileName) {
+        return fileName.substring(0, fileName.length() - 4) + "-reversed.txt";
     }
 }

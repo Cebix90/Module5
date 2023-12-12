@@ -22,7 +22,7 @@ public class Main {
 //        System.out.println(fileComparator.areTextFilesEqual(path1,path4));
 
         FileInverter fileInverter = new FileInverter();
-        System.out.println(fileInverter.invertFile("text1.txt"));
+        fileInverter.invertFile("text1.txt");
 
     }
 }
