@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3e00dc73-b271-4c02-bc50-af5bc9a95f3d" name="Changes" comment="added Square class with tests">
-      <change afterPath="$PROJECT_DIR$/src/FileComparator.java" afterDir="false" />
+    <list default="true" id="3e00dc73-b271-4c02-bc50-af5bc9a95f3d" name="Changes" comment="added FileComparator class">
+      <change afterPath="$PROJECT_DIR$/src/FileInverter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resources/text1.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
     </list>
@@ -48,6 +49,12 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Mateusz\IdeaProjects\Java Mentoring\Module5\src\resources" />
+      <recent name="C:\Users\Mateusz\IdeaProjects\Java Mentoring\Module5\src" />
+    </key>
+  </component>
   <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
@@ -90,7 +97,15 @@
       <option name="project" value="LOCAL" />
       <updated>1702334958661</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="added FileComparator class">
+      <option name="closed" value="true" />
+      <created>1702336579481</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1702336579481</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -98,6 +113,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="added Square class with tests" />
-    <option name="LAST_COMMIT_MESSAGE" value="added Square class with tests" />
+    <MESSAGE value="added FileComparator class" />
+    <option name="LAST_COMMIT_MESSAGE" value="added FileComparator class" />
   </component>
 </project>
